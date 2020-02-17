@@ -1,5 +1,13 @@
 #!/bin/bash
- 
+
+# -s option is gives true when the $1=filename is not an empty file
+# -f option is gives true when the $1=filename is a file, not directory
+# -e option is gives true when the $1=filename is existing
+# -d option is gives true when the $1=filename is a directory
+# -r option is gives true when the $1=filename readable file
+# (r should be present in the owner and group & other permissions are not considered)
+# -x option is gives true when the $1=filename is an executable file
+
 if test -s $1
 then
         echo "$1 not empty file"
