@@ -1,5 +1,5 @@
 #!/bin/bash
- 
+# The program takes an argument and compares it with 0 using conditional statements and operations tested were gt for greater than  
 if test $1 -gt 0
 then
         echo "$1 > 0"
