@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# the script takes an argument and checks whether it is empty string or not. if emtpy string then rental is unknown vehicle.
+# Otherwise, rental is the vehicle and compares againest CAR, VAN, JEEP, BIKE in a case statement and echo the vehicle.
+# Otherwise, prins "none of the option I know of".
+
 if [ -z $1 ]
 then
   rental="*** Unknown vehicle ***"
