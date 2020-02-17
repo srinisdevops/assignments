@@ -5,7 +5,7 @@
 # -e option is gives true when the $1=filename is existing
 # -d option is gives true when the $1=filename is a directory
 # -r option is gives true when the $1=filename readable file
-# (r should be present in the owner and group & other permissions are not considered)
+# (r,x,w should be present in the owner and group & other permissions are not considered)
 # -x option is gives true when the $1=filename is an executable file
 
 if test -s $1
