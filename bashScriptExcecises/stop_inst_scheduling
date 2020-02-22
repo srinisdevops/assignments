@@ -1,0 +1,43 @@
+# Program for stopping older instances, if there are higher than 2 instances
+# 
+
+#!/bin/bash
+#------------------------------------------------------------------------
+
+# Write all the running instances to the file
+# Instances in text format shows in chronological order with first being the recent
+
+aws ec2 describe-instances \
+  --filters Name=instance-state-code,Values=16 \
+  --query 'Reservations[*].Instances[*].{Instance:InstanceId,Time:LaunchTime}' \
+  --output text > file
+
+# Store number of instances needed to keep in the variable ids1
+ids=$(wc -l file | cut -f1 -d " ")
+echo $ids
+ids1=$((ids-2))
+ids1=0
+echo $ids1
+
+while IFS= read -r line
+                # Continue until all the lines read
+do
+                
+        ids1=$((ids1+1))
+        # The If loop just echos the instance id for first two instances
+        if [ $ids1 -le 2 ]; then
+                inst=$(echo $line | cut -d " " -f1)
+                echo $inst
+                #aws ec2 stop-instances --instance-ids $inst
+                #ids=$((ids1-1))
+        # The else loop stops the instances after first two instances skipped
+        else
+                # cut the first word from line for instance id
+                inst=$(echo $line | cut -d " " -f1)
+                echo $inst
+                aws ec2 stop-instances --instance-ids $inst
+
+        fi
+        # reading from file "file"
+done < "file"
+
